@@ -14,4 +14,5 @@ Game's rules :
   Calculate the score of Kevin and Stuart and declare the winner if equal declare DRAW.
   
   (This is my personal try to Hackerank challenge)
+  PS : The string must be in upper case. (Fixable features)
 
