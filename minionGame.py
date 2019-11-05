@@ -8,7 +8,7 @@ from itertools import chain, combinations, permutations
 #import itertools
 import re
 
-def vowels_and_constants(string):
+def ConsonantsVowels(string):
     vowels = []
     constants = []
     for i in range(len(string)):
@@ -19,11 +19,11 @@ def vowels_and_constants(string):
     
     #print([vowels,constants])
     #var = [vowels,constants]
-    print(vowels, constants)
+#    print(vowels, constants)
     
     return (vowels, constants)
     
-def search_substrings(string):    
+def substringSearch(string):    
     s = list(string)
     statement = list(map("".join, chain.from_iterable(combinations(s, r) for r in range(len(s)+1))))
     statement.remove(statement[0])
@@ -32,27 +32,49 @@ def search_substrings(string):
     for i in range(len(statement)):
         if (statement[i] in string):
             newList.append(statement[i])
-#        if (statement[i] not in string):
-#            #del statement[i]
-#            statement.remove(statement[i])
-#            newList.append(statement[i+1])
-#        elif (statement[i] in string):
-#            newList.append(statement[i])
-            
+
     print("List after changes: {}".format(newList))
     print(len(newList))
             
-    
+    newList = list(dict.fromkeys(newList))
+    print(newList)
+            
+### Remove all duplicates ###
+#mylist = ["a", "b", "a", "c", "c"]
+#mylist = list(dict.fromkeys(mylist))
+#print(mylist)
+
+    return newList            
+
+
+def winnerGame(string):
+    kevin = 0
+    stuart = 0
+    newList = substringSearch(string)
+    for i in range(len(newList)):
+        if (newList[i][0] in ['A','E','I','O','U']):
+            kevin += 1
+        else:
+            stuart += 1
+            
+    if (kevin > stuart):
+        print("{} {}".format("Kevin", kevin))
+    elif (stuart > kevin):
+        print("{} {}".format("Stuart", stuart))
+    else:
+        print("Draw")
+            
             
     
     
 if __name__ == '__main__':
     s = input()
-    vowels_and_constants(s)
-    search_substrings(s)
+    ConsonantsVowels(s)
+    substringSearch(s)
+    winnerGame(s)
 
 ### Two possible tries ###
-#    var = vowels_and_constants(string)
+#    var = Consonants&Vowels(string)
 ##    print(var)
 #    statement1 = list(map("".join, chain.from_iterable(combinations(var[0], r2) for r2 in range(len(var[1])+1))))
 #    print(statement1) ### display combinations of elements from same lists
@@ -76,8 +98,8 @@ if __name__ == '__main__':
 #[m.start() for m in re.finditer('test', 'test test test test')]
 
 #### Old code ####
-# var = vowels_and_constants[0]
-# var2 = vowels_and_constants[1]
+# var = Consonants&Vowels[0]
+# var2 = Consonants&Vowels[1]
 
 # for i in range(len(var) + len(var2)):
 #     for j in range(len(var) + len(var2)):    
